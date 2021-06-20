@@ -4,7 +4,6 @@ song2 = "";
 song1_status = "";
 song2_status = "";
 
-scoreRightWrist = 0;
 scoreLeftWrist = 0;
 
 rightWristX = 0;
@@ -39,9 +38,8 @@ function gotPoses(results)
   if(results.length > 0)
   {
 	console.log(results);
-	scoreRightWrist =  results[0].pose.keypoints[10].score;
 	scoreLeftWrist =  results[0].pose.keypoints[9].score;
-	console.log("scoreRightWrist = " + scoreRightWrist + "scoreLeftWrist = " + scoreLeftWrist);
+	console.log("scoreRightWrist = " + scoreRightWrist);
 	
 	rightWristX = results[0].pose.rightWrist.x;
 	rightWristY = results[0].pose.rightWrist.y;
@@ -75,20 +73,6 @@ function draw() {
 			document.getElementById("song").innerHTML = "Playing - Harry Potter Theme Song"
 		}
 	}
-
-	if(scoreLeftWrist > 0.2)
-	{
-		circle(leftWristX,leftWristY,20);
-
-			song1.stop();
-
-		if(song2_status == false)
-		{
-			song2.play();
-			document.getElementById("song").innerHTML = "Playing - Peter Pan Song"
-		}
-	}
-
 }
 
 function play()
